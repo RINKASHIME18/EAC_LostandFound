@@ -1,0 +1,73 @@
+.auth-page-body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* BACKGROUND FIX: Siguraduhing tama ang path sa Bbody.png */
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('../images/Bbody.png') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Poppins', sans-serif;
+    padding-top: 50px; /* Tulak pababa mula sa gitna */
+    box-sizing: border-box;
+}
+
+.auth-box {
+    background: rgba(139, 0, 0, 0.9); /* Maroon background */
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.auth-logo img {
+    width: 400px; 
+    height: auto;
+    margin-bottom: 0px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2)); /* Optional: dagdag lalim */
+}
+
+.form-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: none;
+    box-sizing: border-box;
+}
+
+/* Itago ang mahabang text ni Django sa register */
+.form-container .helptext, .form-container ul {
+    display: none;
+}
+
+.auth-btn {
+    background: white;
+    color: #8B0000;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s;
+}
+
+.auth-btn:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+.footer-link a, .back-home a {
+    color: #ffcccc;
+    text-decoration: none;
+}

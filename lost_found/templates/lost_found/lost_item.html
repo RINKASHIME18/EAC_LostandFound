@@ -1,0 +1,80 @@
+{% extends 'lost_found/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'lost_found/css/lost.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="report-container lost-theme">
+    <div class="form-card">
+        <h1>{% if item %}Update{% else %}Report{% endif %} Lost Item</h1>
+        <p>Fill out the details below to help others identify the belonging.</p>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <input type="hidden" name="status" value="Lost">
+
+            <div class="input-group">
+                <label for="title">Item Name/Title</label>
+                <input type="text" id="title" name="title" value="{{ item.title }}" placeholder="e.g. Lost EAC ID, Black Wallet" required>
+            </div>
+
+            <div class="input-group">
+                <label for="category">Category</label>
+                <select id="category" name="category">
+                    <option value="Electronics" {% if item.category == 'Electronics' %}selected{% endif %}>Electronics</option>
+                    <option value="Documents" {% if item.category == 'Documents' %}selected{% endif %}>Documents</option>
+                    <option value="Personal Effects" {% if item.category == 'Personal Effects' %}selected{% endif %}>Personal Items</option>
+                    <option value="Others" {% if item.category == 'Others' %}selected{% endif %}>Others</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="location">Last Seen Location</label>
+                <input type="text" id="location" name="location" value="{{ item.location }}" placeholder="e.g. Building 4, Canteen" required>
+            </div>
+
+            <div class="input-group">
+                <label for="description">Detailed Description</label>
+                <textarea id="description" name="description" rows="5" placeholder="Mention brand, color, stickers, or any unique marks..." required>{{ item.description }}</textarea>
+            </div>
+
+            <div class="field-group-row" style="display: flex; gap: 15px; margin-bottom: 20px;">
+                <div style="flex: 1;">
+                    <label for="date_lost">Date Lost</label>
+                    <input type="date" id="date_lost" name="date_lost" 
+                           value="{{ item.date_lost|date:'Y-m-d' }}" required 
+                           style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                </div>
+
+                <div style="flex: 1;">
+                    <label for="time_lost">Approximate Time</label>
+                    <input type="time" id="time_lost" name="time_lost" 
+                           value="{{ item.time_lost|time:'H:i' }}" required 
+                           style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                </div>
+            </div>
+
+            <div class="input-group">
+    <label>Upload Image</label>
+    <div class="custom-file-upload">
+        <input type="file" id="image" name="image" accept="image/*" onchange="updateFileName(this)">
+        <label for="image" class="upload-label">
+            <div class="upload-content">
+                <span class="upload-icon">📸</span>
+                <span id="file-name">Click to upload or drag and drop</span>
+                <small>PNG, JPG up to 5MB</small>
+            </div>
+        </label>
+    </div>
+</div>
+
+            <button type="submit" class="publish-btn">
+                {% if item %}SAVE CHANGES{% else %}PUBLISH LOST REPORT{% endif %}
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

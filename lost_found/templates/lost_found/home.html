@@ -1,0 +1,211 @@
+{% extends 'lost_found/base.html' %} {% load static %} {% block content %}
+<section class="hero-bone">
+  <div class="hero-text">
+    <h1>
+      EAC CAVITE <br />
+      <span>LOST & FOUND</span>
+    </h1>
+    <p>Retrieve What's Lost, Return What's Found.</p>
+  </div>
+</section>
+
+<div class="search-bone" id="search-section">
+  <form method="GET" action="{% url 'search_items' %}" class="search-fields">
+    <div class="field-item">
+      <span class="icon">📁</span>
+      <select name="category">
+        <option value="">All Categories</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Documents">Documents</option>
+        <option value="Personal Effects">Personal Effects</option>
+      </select>
+    </div>
+    <div class="field-item">
+      <span class="icon">📍</span>
+      <input type="text" name="location" placeholder="All Locations" />
+    </div>
+    <div class="field-item">
+      <span class="icon">📅</span>
+      <input
+        type="text"
+        name="date_lost"
+        placeholder="Select Date"
+        onfocus="this.type = 'date'"
+        onblur="if (!this.value) this.type = 'text';"
+      />
+    </div>
+    <div class="field-item search-input-box">
+      <input type="text" name="q" placeholder="Search keywords..." />
+    </div>
+    <button type="submit" class="search-btn-bone">SEARCH</button>
+  </form>
+</div>
+
+<section class="action-bone">
+  {% if user.is_authenticated %}
+  <div
+    class="report-box lost"
+    onclick="location.href = this.dataset.url"
+    data-url="{% url 'report_lost' %}"
+    style="cursor: pointer"
+  >
+    <div class="report-icon">🎒</div>
+    <div class="report-info">
+      <h3>Report a Lost Item</h3>
+      <p>Submit a report for your missing item.</p>
+    </div>
+  </div>
+
+  {% if user.is_staff %}
+  <div
+    class="report-box found"
+    onclick="location.href = this.dataset.url"
+    data-url="{% url 'report_found' %}"
+    style="cursor: pointer"
+  >
+    <div class="report-icon">🔑</div>
+    <div class="report-info">
+      <h3>Report a Found Item</h3>
+      <p>Report an item you've found.</p>
+    </div>
+  </div>
+  {% endif %} {% endif %}
+</section>
+
+<div class="items-header">
+  <h2>Latest Lost & Found Items</h2>
+</div>
+
+<div
+  class="item-status-tabs"
+  style="display: flex; justify-content: center; margin-bottom: 30px"
+>
+  <div class="filter-container">
+    <button
+      id="lost-tab-btn"
+      class="filter-btn active"
+      onclick="switchTab('lost')"
+    >
+      Lost Items
+    </button>
+    <button id="found-tab-btn" class="filter-btn" onclick="switchTab('found')">
+      Found Items
+    </button>
+  </div>
+</div>
+
+<div class="items-grid-bone">
+  <div id="lost-items-section" class="tab-content">
+    <div class="grid-layout">
+      {% for item in lost_items %}
+      <div class="item-card">
+        <div class="card-img">
+          {% if item.image %}
+          <img src="{{ item.image.url }}" alt="{{ item.title }}" />
+          {% else %}
+          <img
+            src="{% static 'lost_found/images/Hlogo.png' %}"
+            alt="No Image"
+          />
+          {% endif %}
+        </div>
+        <div class="card-body">
+          <div>
+            <span class="category-tag">{{ item.category }}</span>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description|truncatewords:8 }}</p>
+          </div>
+          <div class="card-footer">
+            <span>📅 {{ item.date_lost|date:"M d" }}</span>
+          </div>
+          {% if user.is_staff %}
+          <div class="card-actions" style="margin-top: 10px;">
+            <form method="POST" action="{% url 'delete_item' item.id %}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+              {% csrf_token %}
+              <button type="submit" class="delete-btn" style="width: 100%;">
+                🗑️ Delete
+              </button>
+            </form>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      {% empty %}
+      <p
+        class="no-items"
+        style="text-align: center; width: 100%; grid-column: 1 / -1"
+      >
+        No lost items reported yet.
+      </p>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div id="found-items-section" class="tab-content" style="display: none">
+    <div class="grid-layout">
+      {% for item in found_items %}
+      <div class="item-card found-card">
+        <div class="card-img">
+          {% if item.image %}
+          <img src="{{ item.image.url }}" alt="{{ item.title }}" />
+          {% else %}
+          <img
+            src="{% static 'lost_found/images/Hlogo.png' %}"
+            alt="No Image"
+          />
+          {% endif %}
+        </div>
+        <div class="card-body">
+          <div>
+            <span class="category-tag">{{ item.category }}</span>
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description|truncatewords:8 }}</p>
+          </div>
+          <div class="card-footer">
+            <span>📅 {{ item.date_lost|date:"M d, Y" }}</span>
+          </div>
+          {% if user.is_staff %}
+          <div class="card-actions" style="margin-top: 10px;">
+            <form method="POST" action="{% url 'delete_item' item.id %}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+              {% csrf_token %}
+              <button type="submit" class="delete-btn" style="width: 100%;">
+                🗑️ Delete
+              </button>
+            </form>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      {% empty %}
+      <p
+        class="no-items"
+        style="text-align: center; width: 100%; grid-column: 1 / -1"
+      >
+        No found items reported yet.
+      </p>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %} {% block extra_js %}
+<script>
+  function switchTab(type) {
+    const lostSection = document.getElementById("lost-items-section");
+    const foundSection = document.getElementById("found-items-section");
+    const lostBtn = document.getElementById("lost-tab-btn");
+    const foundBtn = document.getElementById("found-tab-btn");
+
+    if (type === "lost") {
+      lostSection.style.display = "block";
+      foundSection.style.display = "none";
+      lostBtn.classList.add("active");
+      foundBtn.classList.remove("active");
+    } else {
+      lostSection.style.display = "none";
+      foundSection.style.display = "block";
+      foundBtn.classList.add("active");
+      lostBtn.classList.remove("active");
+    }
+  }
+</script>
+{% endblock %}

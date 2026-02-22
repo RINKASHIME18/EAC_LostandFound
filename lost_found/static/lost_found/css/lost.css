@@ -1,0 +1,145 @@
+/* --- LOST ITEM FORM STYLING --- */
+
+.lost-theme {
+    padding: 60px 20px;
+    background-color: #f4f4f4;
+    min-height: 80vh;
+}
+
+.form-card {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-top: 8px solid #8B0000; /* EAC Maroon Accent */
+}
+
+.form-card h1 {
+    color: #8B0000;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    font-family: 'Times New Roman', serif;
+    font-weight: 800;
+    text-align: center;
+}
+
+.form-card p {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+}
+
+/* --- INPUT FIELDS --- */
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.input-group input[type="text"],
+.input-group select,
+.input-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+    border-color: #8B0000;
+    outline: none;
+    box-shadow: 0 0 5px rgba(139, 0, 0, 0.2);
+}
+
+/* Para sa File Upload */
+.input-group input[type="file"] {
+    padding: 10px 0;
+}
+
+/* --- BUTTON --- */
+
+.publish-btn {
+    width: 100%;
+    background-color: #8B0000;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+.publish-btn:hover {
+    background-color: #a30000;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Responsive adjustment */
+@media (max-width: 600px) {
+    .form-card {
+        padding: 20px;
+    }
+}
+
+/* Itago ang default na pangit na button */
+.custom-file-upload input[type="file"] {
+    display: none;
+}
+
+/* Ang bagong itsura ng upload box */
+.upload-label {
+    display: block;
+    border: 2px dashed #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+}
+
+.upload-label:hover {
+    border-color: #8B0000; /* Maroon color mo */
+    background-color: #fff5f5;
+}
+
+.upload-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.upload-icon {
+    font-size: 2rem;
+}
+
+#file-name {
+    font-weight: 600;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.upload-content small {
+    color: #888;
+}

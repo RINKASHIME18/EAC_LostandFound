@@ -1,0 +1,150 @@
+{% extends 'lost_found/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="about-hero">
+    <div class="glass-container">
+        <h1 class="about-title">EAC Lost & Found
+        <br>Connecting Our Vanguardians</h1>
+        <p class="about-intro">
+            Welcome to the official EAC Cavite Lost and Found portal. We provide a 
+            centralized platform to bridge the gap between lost items and their 
+            rightful owners. Our mission is to foster a culture of honesty and care, 
+            paving the way for the recovery of lost belongings.
+        </p>
+        
+        <div class="mission-section">
+            <h2 class="mission-title">Our Mission</h2>
+            <div class="mission-grid">
+                <div class="mission-item">
+                    <div class="mission-icon">
+                        <img src="{% static 'lost_found/images/handshake.png' %}" alt="Community">
+                    </div>
+                    <h3>Community</h3>
+                    <p>Fostering a network of support</p>
+                </div>
+                <div class="mission-item">
+                    <div class="mission-icon">
+                        <img src="{% static 'lost_found/images/shield.png' %}" alt="Integrity">
+                    </div>
+                    <h3>Integrity</h3>
+                    <p>Promoting honesty on campus</p>
+                </div>
+                <div class="mission-item">
+                    <div class="mission-icon">
+                        <img src="{% static 'lost_found/images/electric.png' %}" alt="Efficiency">
+                    </div>
+                    <h3>Efficiency</h3>
+                    <p>Streamlining the recovery process</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+.about-hero {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{% static 'lost_found/images/Bbody.png' %}");
+    background-size: cover;
+    background-position: center;
+    padding: 40px 20px;
+}
+
+.glass-container {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(150px);
+    -webkit-backdrop-filter: blur(150px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 60px;
+    max-width: 900px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+.about-title {
+    color: #8b0000;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    font-family: "Times New Roman", serif;
+    font-weight: 800;
+}
+
+.about-intro {
+    font-size: 1.1rem;
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 50px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mission-section {
+    border-top: 2px solid #eee;
+    padding-top: 40px;
+}
+
+.mission-title {
+    color: #8b0000;
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.mission-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.mission-item {
+    padding: 20px;
+}
+
+.mission-icon {
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.mission-icon img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.mission-item h3 {
+    color: #8b0000;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.mission-item p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .glass-container {
+        padding: 40px 20px;
+    }
+    
+    .about-title {
+        font-size: 1.8rem;
+    }
+    
+    .mission-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+{% endblock %}
