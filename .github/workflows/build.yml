@@ -30,11 +30,11 @@ jobs:
         run: npm install -g @angular/cli
 
       - name: Install Angular Dependencies
-        # This fixes the "no such file or directory" error by entering your folder
+        # This tells GitHub to look inside the lost_found folder
         working-directory: ./lost_found
         run: npm install
 
       - name: Build Angular Project
-        # This ensures the build runs where the package.json is located
+        # This also runs inside the lost_found folder
         working-directory: ./lost_found
         run: ng build --configuration production
