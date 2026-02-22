@@ -3,20 +3,20 @@ import dj_database_url
 from pathlib import Path
 from dotenv import load_dotenv
 
-# Load local .env file if it exists
+# Load variables from .env if running locally
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# --- SECURITY ---
-# Get secret key from environment or use a dummy for local development
-SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-local-only-key')
+# --- SECURITY CONFIGURATION ---
+# SECRET_KEY should be set in Vercel Environment Variables
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-+%-fqvmz^(jo8zw5tworgth^0xr7c-qdt&5ac%&2urn9!vhi_2')
 
-# DEBUG is True locally, but False on Vercel
+# DEBUG is True locally, False on Vercel
 DEBUG = os.environ.get('VERCEL') != '1'
 
-# ALLOWED_HOSTS for Vercel and local
+# Allowed hosts for local and Vercel deployment
 ALLOWED_HOSTS = ['.vercel.app', '.now.sh', 'localhost', '127.0.0.1']
 
 # --- APPLICATION DEFINITION ---
@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'lost_found', # Your app
+    'lost_found', # Your local app name
 ]
 
 MIDDLEWARE = [
@@ -58,10 +58,11 @@ TEMPLATES = [
     },
 ]
 
+# Crucial for Vercel: Points to the app variable in wsgi.py
 WSGI_APPLICATION = 'eac_project.wsgi.app'
 
 # --- DATABASE CONFIGURATION ---
-# This looks for 'DATABASE_URL' on Vercel. If missing, it defaults to local SQLite.
+# This looks for DATABASE_URL in Vercel. If not found, it uses local SQLite.
 DATABASES = {
     'default': dj_database_url.config(
         default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
@@ -84,18 +85,20 @@ TIME_ZONE = 'Asia/Manila'
 USE_I18N = True
 USE_TZ = True
 
-# --- STATIC & MEDIA FILES ---
-# This configuration is required for collectstatic to work on Vercel
+# --- STATIC FILES (Vercel Requirement) ---
 STATIC_URL = 'static/'
+# STATIC_ROOT must match the distDir in your vercel.json
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'lost_found', 'static'),
 ]
 
+# --- MEDIA FILES ---
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# --- AUTH REDIRECTS ---
+# --- LOGIN/LOGOUT REDIRECTS ---
 LOGOUT_REDIRECT_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 
