@@ -3,6 +3,7 @@
   "functions": {
     "eac_project/wsgi.py": {
       "runtime": "python3.12",
+      "maxLambdaSize": "15mb"
     }
   },
   "routes": [
