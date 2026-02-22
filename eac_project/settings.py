@@ -88,3 +88,4 @@ LOGOUT_REDIRECT_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+ALLOWED_HOSTS = ['.vercel.app', 'now.sh', 'localhost', '127.0.0.1']
