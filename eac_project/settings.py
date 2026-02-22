@@ -1,36 +1,25 @@
 import os
+import dj_database_url
 from pathlib import Path
 from dotenv import load_dotenv
-from urllib.parse import urlparse, parse_qsl
 
+# Load local .env file if it exists
 load_dotenv()
 
-# Replace the DATABASES section of your settings.py with this
-tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': tmpPostgres.path.replace('/', ''),
-        'USER': tmpPostgres.username,
-        'PASSWORD': tmpPostgres.password,
-        'HOST': tmpPostgres.hostname,
-        'PORT': 5432,
-        'OPTIONS': dict(parse_qsl(tmpPostgres.query)),
-    }
-}
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+%-fqvmz^(jo8zw5tworgth^0xr7c-qdt&5ac%&2urn9!vhi_2'
+# --- SECURITY ---
+# Get secret key from environment or use a dummy for local development
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-local-only-key')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG is True locally, but False on Vercel
+DEBUG = os.environ.get('VERCEL') != '1'
 
-ALLOWED_HOSTS = ['.vercel.app', 'now.sh', 'localhost', '127.0.0.1']
+# ALLOWED_HOSTS for Vercel and local
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh', 'localhost', '127.0.0.1']
 
-# Application definition
+# --- APPLICATION DEFINITION ---
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,7 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'lost_found',
+    'lost_found', # Your app
 ]
 
 MIDDLEWARE = [
@@ -60,6 +49,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -68,15 +58,19 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'eac_project.wsgi.application'
+WSGI_APPLICATION = 'eac_project.wsgi.app'
 
+# --- DATABASE CONFIGURATION ---
+# This looks for 'DATABASE_URL' on Vercel. If missing, it defaults to local SQLite.
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
 
+# --- AUTHENTICATION ---
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
@@ -84,24 +78,24 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
+# --- INTERNATIONALIZATION ---
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Asia/Manila'
 USE_I18N = True
 USE_TZ = True
 
-# --- STATIC FILES CONFIGURATION ---
+# --- STATIC & MEDIA FILES ---
+# This configuration is required for collectstatic to work on Vercel
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 STATICFILES_DIRS = [
-    # Inayos natin ito para tumugma sa lost_found/static folder mo
     os.path.join(BASE_DIR, 'lost_found', 'static'),
 ]
 
-# --- MEDIA FILES CONFIGURATION ---
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# --- AUTH REDIRECTS (ITO ANG HININGI MO) ---
-
+# --- AUTH REDIRECTS ---
 LOGOUT_REDIRECT_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 
