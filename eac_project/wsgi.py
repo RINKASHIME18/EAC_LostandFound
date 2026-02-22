@@ -1,11 +1,11 @@
 import os
 from django.core.wsgi import get_wsgi_application
 
-# 1. Set the settings module
+# 1. Point to your settings
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'eac_project.settings')
 
-# 2. Define 'application' FIRST
+# 2. CREATE the application variable (Django does this)
 application = get_wsgi_application()
 
-# 3. Define 'app' SECOND (Vercel looks for this specifically)
+# 3. EXPOSE it to Vercel (Vercel looks for the name 'app')
 app = application
