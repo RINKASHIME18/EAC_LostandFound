@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Django Build Check
 on:
   push:
     branches: [ main ]
@@ -21,20 +21,5 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install Angular CLI
-        run: npm install -g @angular/cli
-
-      - name: Install Angular Dependencies
-        # This tells GitHub to look inside the lost_found folder
-        working-directory: ./lost_found
-        run: npm install
-
-      - name: Build Angular Project
-        # This also runs inside the lost_found folder
-        working-directory: ./lost_found
-        run: ng build --configuration production
+      - name: Run Django Check
+        run: python manage.py check
