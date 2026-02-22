@@ -1,15 +1,12 @@
 {
   "version": 2,
-  "functions": {
-    "eac_project/wsgi.py": {
-      "runtime": "python3.12"
-    }
-  },
-  "routes": [
+  "builds": [
     {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
+      "src": "eac_project/wsgi.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
     {
       "src": "/(.*)",
       "dest": "eac_project/wsgi.py"
