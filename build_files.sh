@@ -1,4 +1,6 @@
 #!/bin/bash
+# Set the Build Command in Vercel to: bash build_files.sh
+# Set the Output Directory in Vercel to: staticfiles_build
 
 echo "Building project..."
 
