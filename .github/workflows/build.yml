@@ -1,0 +1,41 @@
+name: Build and Deploy
+on:
+  push:
+    # This ensures it runs on BOTH main and master branches
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Angular CLI
+        # This fixes the "ng: command not found" error
+        run: npm install -g @angular/cli
+
+      - name: Install Angular Dependencies
+        # This points to your 'lost_found' folder from your screenshot
+        working-directory: ./lost_found
+        run: npm install
+
+      - name: Build Angular Project
+        working-directory: ./lost_found
+        run: ng build --configuration production
