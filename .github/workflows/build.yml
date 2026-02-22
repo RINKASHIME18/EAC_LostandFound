@@ -1,8 +1,7 @@
 name: Build and Deploy
 on:
   push:
-    # This ensures it runs on BOTH main and master branches
-    branches: [ main, master ]
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -28,14 +27,14 @@ jobs:
           node-version: '20'
 
       - name: Install Angular CLI
-        # This fixes the "ng: command not found" error
         run: npm install -g @angular/cli
 
       - name: Install Angular Dependencies
-        # This points to your 'lost_found' folder from your screenshot
+        # This fixes the "no such file or directory" error by entering your folder
         working-directory: ./lost_found
         run: npm install
 
       - name: Build Angular Project
+        # This ensures the build runs where the package.json is located
         working-directory: ./lost_found
         run: ng build --configuration production
