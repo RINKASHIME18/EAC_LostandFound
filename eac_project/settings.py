@@ -20,11 +20,13 @@ ALLOWED_HOSTS = [
     'localhost', 
     '127.0.0.1', 
     '.railway.app', 
+    'eaclostandfound-production.up.railway.app',
     'eac-canteen-connect-production.up.railway.app',
     'eaccanteenconnect-production.up.railway.app'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
+    'https://eaclostandfound-production.up.railway.app',
     'https://eac-canteen-connect-production.up.railway.app',
     'https://eaccanteenconnect-production.up.railway.app'
 ]
