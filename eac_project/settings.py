@@ -72,7 +72,7 @@ TEMPLATES = [
     },
 ]
 
-# Crucial for Vercel/General deployment: Points to the app/application variable in wsgi.py
+# Points to the application variable in wsgi.py
 WSGI_APPLICATION = 'eac_project.wsgi.application'
 
 # --- DATABASE CONFIGURATION ---

@@ -6,6 +6,3 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'eac_project.settings')
 
 # 2. CREATE the application variable (Django does this)
 application = get_wsgi_application()
-
-# 3. EXPOSE it to Vercel (Vercel looks for the name 'app')
-app = application
