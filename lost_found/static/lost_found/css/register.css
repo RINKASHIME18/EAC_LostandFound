@@ -7,11 +7,14 @@
     justify-content: center;
     align-items: center;
     /* BACKGROUND FIX: Siguraduhing tama ang path sa Bbody.png */
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                url('../images/Bbody.png') no-repeat center center fixed;
+    /* BACKGROUND: Bbody.png with dark overlay */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                url('../images/Bbody.png');
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     font-family: 'Poppins', sans-serif;
-    padding-top: 50px; /* Tulak pababa mula sa gitna */
     box-sizing: border-box;
 }
 
@@ -29,10 +32,11 @@
 }
 
 .auth-logo img {
-    width: 400px; 
+    max-width: 100%;
+    width: 250px; /* Reduced fixed width to fit better */
     height: auto;
-    margin-bottom: 0px;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2)); /* Optional: dagdag lalim */
+    margin-bottom: 10px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
 }
 
 .form-container input {
