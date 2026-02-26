@@ -15,7 +15,19 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-+%-fqvmz^(jo8zw5tworg
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
 
-ALLOWED_HOSTS = ['Markahlden.pythonanywhere.com', 'localhost', '127.0.0.1', '.railway.app']
+ALLOWED_HOSTS = [
+    'Markahlden.pythonanywhere.com', 
+    'localhost', 
+    '127.0.0.1', 
+    '.railway.app', 
+    'eac-canteen-connect-production.up.railway.app',
+    'eaccanteenconnect-production.up.railway.app'
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://eac-canteen-connect-production.up.railway.app',
+    'https://eaccanteenconnect-production.up.railway.app'
+]
 
 
 INSTALLED_APPS = [
