@@ -14,7 +14,7 @@ body {
 .main-header {
   background-color: #8b0000;
   padding: 12px 0;
-  border-bottom: 3px solid #ffd700;
+  border-bottom: 3px solid #FF8353;
 }
 
 .navbar {
@@ -233,7 +233,7 @@ body {
 }
 
 .hero-text h1 span {
-  color: #ffd700;
+  color: #FFB167;
 }
 
 .hero-text p {
@@ -427,7 +427,7 @@ body {
 .category-tag {
   display: inline-block;
   font-size: 0.75rem;
-  color: #8b0000;
+  color: #CD465A;
   text-transform: uppercase;
   font-weight: 700;
   margin-bottom: 5px;
@@ -527,7 +527,7 @@ body {
   color: #333;
   text-align: center;
   padding: 15px 0;
-  border-top: 4px solid #f1c40f;
+  border-top: 4px solid #FF8353;
 }
 
 .filter-container {
@@ -542,7 +542,7 @@ body {
   background-color: #800000;
   color: white;
   padding: 10px 25px;
-  border: 2px solid #f1c40f;
+  border: 2px solid #FF8353;
   border-radius: 25px;
   font-size: 1rem;
   font-weight: bold;
@@ -552,7 +552,7 @@ body {
 }
 
 .filter-btn:hover {
-  background-color: #f1c40f; 
+  background-color: #FFB167; 
   color: #800000; 
   transform: translateY(-2px); 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
