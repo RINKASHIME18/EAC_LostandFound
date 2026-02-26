@@ -1,1 +1,1 @@
-web: gunicorn eac_project.wsgi:application
+web: python manage.py migrate && gunicorn eac_project.wsgi:application
