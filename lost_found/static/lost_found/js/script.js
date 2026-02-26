@@ -1,3 +1,25 @@
+document.addEventListener('DOMContentLoaded', function() {
+    // Mobile Menu Toggle
+    const menu = document.querySelector('#mobile-menu');
+    const menuLinks = document.querySelector('.nav-links');
+
+    if (menu && menuLinks) {
+        menu.addEventListener('click', function() {
+            menu.classList.toggle('is-active');
+            menuLinks.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        const navItems = document.querySelectorAll('.nav-links a');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                menu.classList.remove('is-active');
+                menuLinks.classList.remove('active');
+            });
+        });
+    }
+});
+
 function updateFileName(input) {
     const fileNameDisplay = document.getElementById('file-name');
     const previewContainer = document.getElementById('image-preview'); // Dagdagan mo ng div sa HTML

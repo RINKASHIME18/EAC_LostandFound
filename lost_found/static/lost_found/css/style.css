@@ -63,6 +63,21 @@ body {
   align-items: center;
 }
 
+/* Burger Menu Styles */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  transition: 0.3s;
+}
+
 .nav-links li {
   display: flex;
   align-items: center;
@@ -530,20 +545,57 @@ body {
 
 
 @media (max-width: 768px) {
- 
   .navbar {
-    flex-direction: column;
-    padding: 15px;
+    padding: 10px 20px;
+    height: 70px;
   }
 
-  .logo-section {
-    margin-bottom: 15px;
+  .menu-toggle {
+    display: flex;
+    z-index: 1001;
+  }
+
+  /* Hamburger Animation */
+  .menu-toggle.is-active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle.is-active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .menu-toggle.is-active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
   }
 
   .nav-links {
-    flex-direction: column;
-    gap: 10px;
+    position: fixed;
+    top: -100%; /* Hidden by default */
+    left: 0;
     width: 100%;
+    height: calc(100vh - 70px);
+    background-color: #8b0000;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 50px;
+    transition: 0.4s ease-in-out;
+    z-index: 1000;
+    overflow-y: auto;
+  }
+
+  .nav-links.active {
+    top: 70px; /* Show when active */
+  }
+
+  .nav-links li {
+    width: 100%;
+    margin: 15px 0;
+    justify-content: center;
+  }
+
+  .nav-links a {
+    font-size: 1.2rem;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
   }
   
   .nav-links > li:not(:last-child)::after {
@@ -554,6 +606,22 @@ body {
     justify-content: center;
     margin-top: 15px;
     width: 100%;
+  }
+
+  /* Dropdown inside mobile nav */
+  .dropdown-content {
+    position: static;
+    width: 100%;
+    background-color: #7b0000;
+    box-shadow: none;
+    border: none;
+    text-align: center;
+  }
+
+  .dropdown-content a, 
+  .dropdown-content button.logout-btn {
+    color: white;
+    text-align: center;
   }
 
   
