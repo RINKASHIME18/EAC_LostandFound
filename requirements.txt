@@ -3,10 +3,8 @@ Django==6.0.2
 pillow==12.1.0
 sqlparse==0.5.5
 tzdata==2025.3
-dj-database-url==2.1.0
 python-dotenv==1.0.1
 whitenoise==6.4.0
-psycopg[binary]==3.2.5
 gunicorn==23.0.0
 cloudinary==1.42.2
 django-cloudinary-storage==0.3.0
