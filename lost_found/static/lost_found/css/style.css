@@ -608,8 +608,14 @@ body {
     width: 100%;
   }
 
+  /* Hide profile/username on mobile burger style */
+  .dropdown .dropbtn {
+    display: none;
+  }
+
   /* Dropdown inside mobile nav */
   .dropdown-content {
+    display: block !important;
     position: static;
     width: 100%;
     background-color: #7b0000;
@@ -622,6 +628,8 @@ body {
   .dropdown-content button.logout-btn {
     color: white;
     text-align: center;
+    font-size: 1.2rem;
+    padding: 15px 0;
   }
 
   
