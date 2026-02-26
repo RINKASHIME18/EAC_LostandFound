@@ -15,7 +15,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-+%-fqvmz^(jo8zw5tworg
 DEBUG = os.environ.get('VERCEL') != '1'
 
 
-ALLOWED_HOSTS = ['yourusername.pythonanywhere.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['Markahlden.pythonanywhere.com', 'localhost', '127.0.0.1', '.railway.app']
 
 
 INSTALLED_APPS = [
@@ -57,11 +57,11 @@ TEMPLATES = [
     },
 ]
 
-# Crucial for Vercel: Points to the app variable in wsgi.py
-WSGI_APPLICATION = 'eac_project.wsgi.app'
+# Crucial for Vercel/General deployment: Points to the app/application variable in wsgi.py
+WSGI_APPLICATION = 'eac_project.wsgi.application'
 
 # --- DATABASE CONFIGURATION ---
-# This looks for DATABASE_URL in Vercel. If not found, it uses local SQLite.
+# This looks for DATABASE_URL in the environment. If not found, it uses local SQLite.
 DATABASES = {
     'default': dj_database_url.config(
         default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
@@ -84,10 +84,10 @@ TIME_ZONE = 'Asia/Manila'
 USE_I18N = True
 USE_TZ = True
 
-# --- STATIC FILES (Vercel Requirement) ---
+# --- STATIC FILES ---
 STATIC_URL = 'static/'
-# Ensure this matches your vercel.json configuration
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+# Ensure this matches your deployment configuration
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'lost_found', 'static'),
