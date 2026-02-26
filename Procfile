@@ -1,1 +1,1 @@
-web: gunicorn eac_project.wsgi
+web: gunicorn eac_project.wsgi:application
