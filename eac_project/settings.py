@@ -127,6 +127,7 @@ else:
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # --- LOGIN/LOGOUT REDIRECTS ---
+LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
 
