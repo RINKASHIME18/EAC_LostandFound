@@ -5,6 +5,21 @@
     <link rel="stylesheet" href="{% static 'lost_found/css/lost.css' %}">
 {% endblock %}
 
+{% block extra_js %}
+<script>
+function updateFileName(input) {
+    const fileNameSpan = document.getElementById('file-name');
+    if (input.files.length === 0) {
+        fileNameSpan.textContent = 'Click to upload or drag and drop (multiple allowed)';
+    } else if (input.files.length === 1) {
+        fileNameSpan.textContent = input.files[0].name;
+    } else {
+        fileNameSpan.textContent = input.files.length + ' files selected';
+    }
+}
+</script>
+{% endblock %}
+
 {% block content %}
 <div class="report-container lost-theme">
     <div class="form-card">
@@ -58,12 +73,12 @@
             <div class="input-group">
     <label>Upload Image</label>
     <div class="custom-file-upload">
-        <input type="file" id="image" name="image" accept="image/*" onchange="updateFileName(this)">
+        <input type="file" id="image" name="images" accept="image/*" multiple onchange="updateFileName(this)">
         <label for="image" class="upload-label">
             <div class="upload-content">
                 <span class="upload-icon">📸</span>
-                <span id="file-name">Click to upload or drag and drop</span>
-                <small>PNG, JPG up to 5MB</small>
+                <span id="file-name">Click to upload or drag and drop (multiple allowed)</span>
+                <small>PNG, JPG up to 5MB per file</small>
             </div>
         </label>
     </div>

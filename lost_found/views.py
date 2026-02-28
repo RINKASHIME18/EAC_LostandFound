@@ -60,19 +60,21 @@ def report_lost(request):
         description = request.POST.get('description')
         date_lost = request.POST.get('date_lost')
         time_lost = request.POST.get('time_lost')
-        image = request.FILES.get('image')
+        images = request.FILES.getlist('images')
 
-        Item.objects.create(
+        item = Item.objects.create(
             title=title,
             category=category,
             location=location,
             description=description,
             date_lost=date_lost,
             time_lost=time_lost,
-            image=image,
             status='Lost',
             user=request.user  # Associate with logged-in user
         )
+
+        for img in images:
+            ItemImage.objects.create(item=item, image=img)
         messages.success(request, "Lost item reported successfully!")
         return redirect('home')
         
@@ -144,3 +146,7 @@ def messages_view(request):
 
 def about(request):
     return render(request, 'lost_found/about.html')
+
+def item_detail(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+    return render(request, 'lost_found/item_detail.html', {'item': item})

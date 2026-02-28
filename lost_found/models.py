@@ -28,4 +28,11 @@ class Item(models.Model):
 
     def __str__(self):
         return f"{self.status}: {self.title}"
+
+class ItemImage(models.Model):
+    item = models.ForeignKey(Item, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='items/')
+
+    def __str__(self):
+        return f"Image for {self.item.title}"
     
