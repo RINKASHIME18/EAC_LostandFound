@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.db.models import Q
-from .models import Item
+from .models import Item, ItemImage
 
 # 1. HOME VIEW
 def home(request):
