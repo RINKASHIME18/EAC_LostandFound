@@ -41,19 +41,17 @@
                 <textarea id="description" name="description" rows="5" placeholder="Mention brand, color, stickers, or any unique marks..." required>{{ item.description }}</textarea>
             </div>
 
-            <div class="field-group-row" style="display: flex; gap: 15px; margin-bottom: 20px;">
-                <div style="flex: 1;">
+            <div class="field-group-row">
+                <div class="input-group">
                     <label for="date_lost">Date Lost</label>
                     <input type="date" id="date_lost" name="date_lost" 
-                           value="{{ item.date_lost|date:'Y-m-d' }}" required 
-                           style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                           value="{{ item.date_lost|date:'Y-m-d' }}" required>
                 </div>
 
-                <div style="flex: 1;">
+                <div class="input-group">
                     <label for="time_lost">Approximate Time</label>
                     <input type="time" id="time_lost" name="time_lost" 
-                           value="{{ item.time_lost|time:'H:i' }}" required 
-                           style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                           value="{{ item.time_lost|time:'H:i' }}" required>
                 </div>
             </div>
 

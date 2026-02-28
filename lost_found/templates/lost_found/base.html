@@ -6,8 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EAC Cavite | Lost & Found</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'lost_found/css/style.css' %}">
-    <script src="{% static 'lost_found/js/script.js' %}"></script>
+    <script src="{% static 'lost_found/js/script.js' %}"></script></script>
 
     {% block extra_css %}{% endblock %}
 </head>
@@ -47,14 +50,16 @@
                         {% endif %}
                     </a>
                     <div class="dropdown-content">
-                        {% if user.is_authenticated %}
-                            <form action="{% url 'logout' %}" method="post" style="margin: 0;">
-                                {% csrf_token %}
-                                <button type="submit" class="logout-btn">Logout</button>
-                            </form>
-                        {% else %}
-                            <a href="{% url 'login' %}">Login</a>
-                        {% endif %}
+                        <div class="dropdown-inner">
+                            {% if user.is_authenticated %}
+                                <form action="{% url 'logout' %}" method="post" style="margin: 0;">
+                                    {% csrf_token %}
+                                    <button type="submit" class="logout-btn">Logout</button>
+                                </form>
+                            {% else %}
+                                <a href="{% url 'login' %}">Login</a>
+                            {% endif %}
+                        </div>
                     </div>
                 </li>
             </ul>

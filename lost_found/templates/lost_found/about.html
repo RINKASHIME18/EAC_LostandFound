@@ -44,75 +44,84 @@
 
 <style>
 .about-hero {
-    min-height: 80vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("{% static 'lost_found/images/Bbody.png' %}");
+    background-image: linear-gradient(rgba(26, 5, 5, 0.65), rgba(26, 5, 5, 0.65)), url("{% static 'lost_found/images/Bbody.png' %}");
     background-size: cover;
     background-position: center;
-    padding: 40px 20px;
+    padding: 80px 20px;
 }
 
 .glass-container {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(150px);
-    -webkit-backdrop-filter: blur(150px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
-    padding: 60px;
-    max-width: 900px;
+    background: rgba(252, 240, 240, 0.75);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 40px;
+    padding: 60px 40px;
+    max-width: 1000px;
     width: 100%;
     text-align: center;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
 }
 
 .about-title {
-    color: #8b0000;
-    font-size: 2.5rem;
-    margin-bottom: 30px;
-    font-family: "Times New Roman", serif;
+    color: var(--bright-maroon);
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
     font-weight: 800;
+    letter-spacing: -1px;
 }
 
 .about-intro {
     font-size: 1.1rem;
-    color: #444;
-    line-height: 1.8;
+    color: #333;
+    line-height: 1.6;
     margin-bottom: 50px;
-    max-width: 800px;
+    max-width: 750px;
     margin-left: auto;
     margin-right: auto;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
 }
 
 .mission-section {
-    border-top: 2px solid #eee;
-    padding-top: 40px;
+    padding-top: 30px;
 }
 
 .mission-title {
-    color: #8b0000;
-    font-size: 1.5rem;
-    margin-bottom: 40px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    display: none; /* Removed as per the clean dashboard style */
 }
 
 .mission-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    gap: 20px;
 }
 
 .mission-item {
-    padding: 20px;
+    background: #ffffff;
+    padding: 40px 20px;
+    border-radius: 25px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.mission-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(74, 4, 4, 0.1);
+    border-color: var(--primary-maroon);
 }
 
 .mission-icon {
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 60px;
     margin-bottom: 20px;
 }
 
@@ -123,27 +132,38 @@
 }
 
 .mission-item h3 {
-    color: #8b0000;
+    color: var(--primary-maroon);
     font-size: 1.2rem;
     margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
 }
 
 .mission-item p {
     font-size: 0.9rem;
-    color: #666;
+    color: #555;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    line-height: 1.4;
 }
 
 @media (max-width: 768px) {
     .glass-container {
         padding: 40px 20px;
+        border-radius: 30px;
     }
     
     .about-title {
-        font-size: 1.8rem;
+        font-size: 2.2rem;
     }
     
     .mission-grid {
         grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .about-hero {
+        padding: 40px 10px;
     }
 }
 </style>
