@@ -17,8 +17,10 @@
         <h2 class="section-title">Recent Lost Items</h2>
         <div class="card-container">
             {% for item in lost_items %}
-            <div class="item-card">
-                {% if item.image %}
+            <div class="item-card" onclick="window.location.href='{% url 'item_detail' item.id %}';" style="cursor: pointer;">
+                {% if item.images.all %}
+                    <img src="{{ item.images.first.image.url }}" alt="{{ item.title }}">
+                {% elif item.image %}
                     <img src="{{ item.image.url }}" alt="{{ item.title }}">
                 {% else %}
                     <div class="no-image">No Image Provided</div>
@@ -31,7 +33,7 @@
                     <p style="font-size: 0.85rem; color: var(--soft-rose); font-weight: 700;">Reporter: {{ item.user.username|default:"Anonymous" }}</p>
                     <span class="timestamp">Posted: {{ item.date_reported|date:"M d, Y" }}</span>
                     
-                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <div style="display: flex; gap: 10px; margin-top: 10px;" onclick="event.stopPropagation();">
                         <form method="POST" action="{% url 'mark_as_found' item.id %}" style="flex: 1;">
                             {% csrf_token %}
                             <button type="submit" class="found-btn" style="width: 100%;">I Found This!</button>
