@@ -25,6 +25,7 @@ ALLOWED_HOSTS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
+    'https://eaclostandfound.up.railway.app',
     'https://eaclostandfound-production.up.railway.app',
     'https://eac-canteen-connect-production.up.railway.app',
     'https://eaccanteenconnect-production.up.railway.app'
