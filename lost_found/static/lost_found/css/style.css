@@ -715,6 +715,13 @@ body {
     height: 70px;
   }
 
+  .reclaim-logo {
+    height: 80px;
+    margin-top: -20px;
+    margin-bottom: -20px;
+    margin-left: -20px;
+  }
+
   .menu-toggle {
     display: flex;
     z-index: 1001;
@@ -874,5 +881,12 @@ body {
   
   .college-name {
     font-size: 1.2rem;
+  }
+
+  .reclaim-logo {
+    height: 60px;
+    margin-top: -15px;
+    margin-bottom: -15px;
+    margin-left: -15px;
   }
  }
